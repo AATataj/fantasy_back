@@ -10,6 +10,7 @@ import json
 @csrf_exempt
 def dbQuery (request):
     queryData = json.load(request)
+    print(queryData)
     print(queryData.get('name'))
     print(queryData.get('startDate'))
     print(queryData.get('endDate'))
@@ -18,7 +19,7 @@ def dbQuery (request):
     queryResults = Boxscores.objects.filter(name = queryData.get('name'),
                                             date__lte= queryData.get('endDate'), 
                                             date__gte= queryData.get('startDate'),
-                                            )[:5]
+                                            )
 
 
     print (str(len(queryResults)))
