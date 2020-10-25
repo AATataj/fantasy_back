@@ -3,10 +3,24 @@ from django.core import serializers
 from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from backend.models import Boxscores
-import json
+import socketio
+import json, os
+
+async_mode = None
+basedir = os.path.dirname(os.path.realpath(__file__))
+sio = socketio.Server(async_mode='eventlet')\
+@sio.on('connection-bind')
+def connection_bind(sid, data):
+    ## code to capture data
+    ## sid is unique for each connection and data is the additional
+    ## info for the connection (roto, box, plays etc)
+
+@sio.on('disconnect')
+def test_disconnect(sid):
+    ## code to capture data
+    ## etc etc
 
 # Create your views here.
-
 @csrf_exempt
 def dbQuery (request):
     queryData = json.load(request)
