@@ -27,12 +27,11 @@ def dbQuery (request):
     jsonReply = serializers.serialize("json", queryResults)
     return JsonResponse(jsonReply, safe=False)
 
-def ScrapeRoto(request):
-    ## in here we'll need the function to call the scraper
-    ## functions and get periodic results to push back to the front end
+# def ScrapeRoto(request):
+#     print ("we get into scrapeRoto in view.py")
+#     ## in here we'll need the function to call the scraper
+#     ## functions and get periodic results to push back to the front end
 
-    # for now, let's just handle the request for the websocket and 
-    # make sure it works with only a timer
-    print ("this is the request : " + str(request))
-    
-    return JsonResponse(request, safe=False)
+#     # for now, let's just handle the request for the websocket and 
+#     # make sure it works with only a timer 
+#     return JsonResponse(request, safe=False)
