@@ -6,6 +6,12 @@ class ProgressConsumer(WebsocketConsumer):
     def connect(self):
         print("do we ever get into the connect function?")
         self.accept()
+        message = "hellows"
+        
+        self.send(text_data=json.dumps({
+            'progress': message
+        }))
+
 
     def disconnect(self, close_code):
         pass
