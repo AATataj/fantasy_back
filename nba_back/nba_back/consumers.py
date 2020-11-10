@@ -1,6 +1,6 @@
-# chat/consumers.py
 import json
 from channels.generic.websocket import WebsocketConsumer
+from .externalMsgs import testingExternal
 
 class ProgressConsumer(WebsocketConsumer):
     def connect(self):
@@ -8,9 +8,10 @@ class ProgressConsumer(WebsocketConsumer):
         self.accept()
         message = "hellows"
         
-        self.send(text_data=json.dumps({
-            'progress': message
-        }))
+        testingExternal(self)
+        # self.send(text_data=json.dumps({
+        #     'progress': message
+        # }))
 
 
     def disconnect(self, close_code):
