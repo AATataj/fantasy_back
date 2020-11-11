@@ -1,6 +1,12 @@
-import json
+import json, sys
 from channels.generic.websocket import WebsocketConsumer
+import mysql.connector
+
 from .externalMsgs import testingExternal
+sys.path.insert(1, sys.path[0]+'/../../')
+#sys.path.insert(1, '/home/slick/Documents/fantasy_bot')
+from fantasy_bot import rotoworldScraper
+
 
 class ProgressConsumer(WebsocketConsumer):
     def connect(self):
@@ -8,10 +14,12 @@ class ProgressConsumer(WebsocketConsumer):
         self.accept()
         message = "hellows"
         
-        testingExternal(self)
-        # self.send(text_data=json.dumps({
-        #     'progress': message
-        # }))
+        cnx = mysql.connector.connect(user="slick", password = "muresan44", host ='127.0.0.1', database='nba')
+
+        rotoworldScraper.updateRoto(cnx)
+        self.send(text_data=json.dumps({
+            'progress': message
+        }))
 
 
     def disconnect(self, close_code):
